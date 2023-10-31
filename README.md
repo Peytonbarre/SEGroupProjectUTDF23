@@ -1,5 +1,14 @@
 # SEGroupProjectUTDF23
 
+## Members
+This app is developed by the following members:
+* Peyton Barre
+* Mageto Nyakoni
+* Kero Abdelmalak
+* Manas Singh
+* Manvir Chakal
+* Manoj Manivannan
+
 The project architecture consists of the following:
 * React+Typescript Frontend
 * Python Flask Backend
