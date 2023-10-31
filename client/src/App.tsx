@@ -4,14 +4,14 @@ import { Home } from './pages/Home';
 import { Friends } from './pages/Friends';
 import { Profile } from './pages/Profile';
 import { Posts } from './pages/Posts';
-import { Navbar } from './components/Navbar';
+import { Login } from './pages/Login';
 
 function App() {
   return (
     <BrowserRouter>
-      <Navbar/>
       <Routes>
         <Route path="/" element={<Home/>}/>
+        <Route path="/login" element={<Login/>}/>
         <Route path="/profile" element={<Profile/>}/>
         <Route path="/friends" element={<Friends/>}/>
         <Route path="/posts" element={<Posts/>}/>
