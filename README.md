@@ -11,6 +11,7 @@ This app is developed by the following members:
 
 The project architecture consists of the following:
 * React+Typescript Frontend
+* Bootstrap and MUI for styling/theming
 * Python Flask Backend
 * Fly.io for Hosting
 * MongoDB Atlas for data storage
