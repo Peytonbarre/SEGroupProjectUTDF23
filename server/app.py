@@ -23,7 +23,6 @@ CORS(app)
 
 #Loading and creating environment variables for MongoDB
 load_dotenv()
-print(os.getenv("MONGOURI"))
 app.config['MONGO_URI'] = os.getenv("MONGOURI")
 
 #Starting the DB connection
