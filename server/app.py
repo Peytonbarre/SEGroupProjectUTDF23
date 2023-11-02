@@ -4,6 +4,7 @@ from flask_pymongo import PyMongo
 from werkzeug.security import generate_password_hash, check_password_hash
 from dotenv import load_dotenv
 import os
+import pymongo
 
 '''
 AVAILABLE DATABASE+COLLECTIONS:
@@ -31,18 +32,39 @@ mongo = PyMongo(app)
 #Take from details, insert new user with details into DB
 @app.route('/register', methods=['POST'])
 def register():
+    #Gets the information from the frontend form
     message = request.json
     username = message['username']
     password = message['password']
+
+    #Hashes the password for security reasons
     password = generate_password_hash(password)
-    # Also, add unique constraint
+
+    #Posts the password and username into the database
     mongo.db.People.insert_one({'username': username, 'password': password})
+
+    #Returns a success message when the password is successfully added
     return jsonify({"message": "Registration successful"})
 
 #Take from details, validate it against database
 @app.route('/login', methods=['GET'])
 def login():
-    return jsonify({"message": "hello world"})
+    #Gets information from the frontend form
+    message = request.json
+    username = message['username']
+    password = message['password']
+
+    #Finds the user from the database based on info given
+    user = mongo.db.People.find_one({'username': username})
+
+    #Checks if the user exists and if the password matches (Using hashing)
+    if user and check_password_hash(user['password'], password):
+        #Returns message if login works
+        #TODO create JWK that carries a key and perform route forwarding
+        return jsonify({'message': "Login successful"})
+    
+    #Return auth fail if login does not work
+    return jsonify({'message': "Login failed"}), 401
 
 #Take from details, insert new post to database
 @app.route('/createPost', methods=['POST'])
