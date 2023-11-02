@@ -1,6 +1,9 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from flask_pymongo import PyMongo
+from werkzeug.security import generate_password_hash, check_password_hash
+from dotenv import load_dotenv
+import os
 
 '''
 AVAILABLE DATABASE+COLLECTIONS:
@@ -17,8 +20,10 @@ AVAILABLE DATABASE+COLLECTIONS:
 app = Flask(__name__)
 CORS(app)
 
-#Creating environment variables for MongoDB
-app.config['MONGO_URI'] = "mongodb+srv://SEAdmin:XB4X9erA1oljZlel@cluster0.m3mwtca.mongodb.net/Classmeet?retryWrites=true&w=majority"
+#Loading and creating environment variables for MongoDB
+load_dotenv()
+print(os.getenv("MONGOURI"))
+app.config['MONGO_URI'] = os.getenv("MONGOURI")
 
 #Starting the DB connection
 mongo = PyMongo(app)
@@ -29,7 +34,7 @@ def register():
     message = request.json
     username = message['username']
     password = message['password']
-    #TODO Add encryption, just a simple example using requests and db
+    password = generate_password_hash(password)
     # Also, add unique constraint
     mongo.db.People.insert_one({'username': username, 'password': password})
     return jsonify({"message": "Registration successful"})
