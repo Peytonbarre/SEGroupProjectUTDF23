@@ -1,9 +1,9 @@
 import React from "react";
-import { Container, Nav, Navbar as BootstrapNav, NavDropdown } from "react-bootstrap"
+import { Container, Nav, Navbar as BootstrapNav } from "react-bootstrap"
 
 export function Navbar(){
     return(
-        <BootstrapNav bg="light" data-bs-theme="light">
+        <BootstrapNav bg="light" data-bs-theme="light" className="shadow-sm">
             <Container>
                 <BootstrapNav.Brand href="/">ClassMeet</BootstrapNav.Brand>
                 <BootstrapNav.Toggle aria-controls="basic-navbar-nav" />
