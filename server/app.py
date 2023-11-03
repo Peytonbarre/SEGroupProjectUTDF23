@@ -3,6 +3,7 @@ from flask_cors import CORS
 from flask_pymongo import PyMongo
 from werkzeug.security import generate_password_hash, check_password_hash
 from dotenv import load_dotenv
+from datetime import datetime
 import os
 import pymongo
 
@@ -65,15 +66,66 @@ def login():
     #Return auth fail if login does not work
     return jsonify({'message': "Login failed"}), 401
 
-#Take from details, insert new post to database
+#Take from details, insert new post to database (Manvir)
 @app.route('/createPost', methods=['POST'])
 def createPost():
-    return jsonify({"message": "hello world"})
+    # Gets the information from the frontend form
+    message = request.json
+    username = request.args.get('username')
+    classid = request.args.get('classid')
+    title = message['title']
+    body = message['body']
 
-#Search database for posts made by friends, sort by date (descending)
-@app.route('/displayPosts', methods=['GET'])
+    # Checks if the user and class exists
+    if mongo.db.People.find_one({'username': username}) and mongo.db.Classes.find_one({'classid': classid}):
+        # Posts the post into the database
+        post = {
+            'username': username,
+            'classid': classid,
+            'title': title,
+            'body': body,
+            'created_at': datetime.utcnow()  # Stores the current UTC time
+        }
+        mongo.db.Posts.insert_one(post)
+
+        return jsonify({"message": "Post created successfully"}), 201
+    
+    else:
+        return jsonify({"message": "Post creation failed"}), 401
+
+#Search database for posts made by friends, sort by date (descending) (Manvir)
+@app.route('/displayPosts', methods=['GET']) 
 def displayPosts():
-    return jsonify({"message": "hello world"})
+    # This should be the username of the logged-in user,
+    # which you could get from a session or token, but for simplicity,
+    # let's say it's passed as a query parameter
+    username = request.args.get('username')
+
+    # If no username is provided, return an error
+    if not username:
+        return jsonify({'message': "Username is required to display posts."}), 400
+
+    # Retrieve the user's friends list
+    user = mongo.db.People.find_one({'username': username})
+    if not user:
+        return jsonify({'message': "User not found."}), 404
+
+    friends = user.get('friends', [])
+    
+    # Now find the posts made by friends
+    # Assuming there is a 'username' field in the Posts document to indicate who made the post
+    posts_cursor = mongo.db.Posts.find({'username': {'$in': friends}}).sort('created_at', pymongo.DESCENDING)
+    
+    # Convert cursor to list (limit to a reasonable number for the response)
+    posts = list(posts_cursor.limit(50))
+
+    # Assuming you want to return JSON data, you'll need to convert the posts to a JSON-serializable format
+    # ObjectId is not JSON serializable, so you need to convert it to a string
+    for post in posts:
+        post['_id'] = str(post['_id'])
+        post['created_at'] = post['created_at'].isoformat()
+
+    return jsonify({'posts': posts}), 200
 
 #Add friendship to database based on username input
 @app.route('/addFriend', methods=['POST'])

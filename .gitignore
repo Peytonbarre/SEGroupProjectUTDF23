@@ -26,3 +26,8 @@ server/venv
 server/__pycache__
 
 server/.env
+
+# local env files
+Lib/
+Scripts/
+pyvenv.cfg
