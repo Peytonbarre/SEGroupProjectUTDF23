@@ -2,13 +2,20 @@ import React, { useState } from 'react';
 import { Container, Form, Button, Image, Card, Col, Row } from 'react-bootstrap';
 import { Navbar } from "../components/Navbar";
 
-export function Login() {
+export function SignUp() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        // Handle login logic here
+        
+        if (password !== confirmPassword) {
+            console.error("Passwords do not match");
+            return;
+        }
+
+        // Handle signup logic here
         console.log('Username:', username, 'Password:', password);
     }
 
@@ -31,11 +38,15 @@ export function Login() {
                                     <Form.Label>Password:</Form.Label>
                                     <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                                 </Form.Group>
-                                <Button type="submit" variant="primary">LOG IN</Button>
+                                <Form.Group className="mb-3">
+                                    <Form.Label>Confirm Password:</Form.Label>
+                                    <Form.Control type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+                                </Form.Group>
+                                <Button type="submit" variant="primary">SIGN UP</Button>
                             </Form>
                         </Card.Body>
                         <Card.Footer>
-                            <a href="#">Forgot Username or Password?</a>
+                            <a href="/login">Already have an account? Log In</a>
                         </Card.Footer>
                     </Card>
                 </Col>

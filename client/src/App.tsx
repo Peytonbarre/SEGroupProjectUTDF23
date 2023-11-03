@@ -5,6 +5,7 @@ import { Friends } from './pages/Friends';
 import { Profile } from './pages/Profile';
 import { Posts } from './pages/Posts';
 import { Login } from './pages/Login';
+import { SignUp } from './pages/Signup';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/profile" element={<Profile/>}/>
         <Route path="/friends" element={<Friends/>}/>
         <Route path="/posts" element={<Posts/>}/>
+        <Route path="/signup" element={<SignUp/>}/>
       </Routes>
     </BrowserRouter>
   );
