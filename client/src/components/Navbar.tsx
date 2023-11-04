@@ -3,7 +3,7 @@ import { Container, Nav, Navbar as BootstrapNav } from "react-bootstrap"
 
 export function Navbar(){
     return(
-        <BootstrapNav bg="light" data-bs-theme="light" className="shadow-sm">
+        <BootstrapNav bg="light" data-bs-theme="light" className="shadow-sm sticky-top">
             <Container>
                 <BootstrapNav.Brand href="/">ClassMeet</BootstrapNav.Brand>
                 <BootstrapNav.Toggle aria-controls="basic-navbar-nav" />
