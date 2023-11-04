@@ -102,8 +102,8 @@ export function Home() {
               }}
             ></Image>
             <h2 className='display-6 mt-3 pb-2'>Peyton</h2>
-            <h2 className='display-6 fs-4 mt-2'>Data Engineering</h2>
-            <h2 className='display-6 fs-4 mt-2 pb-5'>Fort Worth, TX</h2>
+            <h2 className='display-4 fs-5 text-justify'>Data Engineering</h2>
+            <h2 className='display-4 fs-5 text-justify pb-5'>Fort Worth, TX</h2>
           </Col>
           <Col className="text-center">
             <Image
@@ -116,8 +116,8 @@ export function Home() {
               }}
             ></Image>
             <h2 className='display-6 mt-3 pb-2'>Manvir</h2>
-            <h2 className='display-6 fs-4 mt-2'>Cybersecurity</h2>
-            <h2 className='display-6 fs-4 mt-2 pb-5'>Chandigarh, India</h2>
+            <h2 className='display-4 fs-5 text-justify'>Cybersecurity</h2>
+            <h2 className='display-4 fs-5 text-justify pb-5'>Chandigarh, India</h2>
           </Col>
           <Col className="text-center">
             <Image
@@ -130,8 +130,8 @@ export function Home() {
               }}
             ></Image>
             <h2 className='display-6 mt-3 pb-2'>Mageto</h2>
-            <h2 className='display-6 fs-4 mt-2'>Data Science + PM</h2>
-            <h2 className='display-6 fs-4 mt-2 pb-5'>Jersey City, NJ</h2>
+            <h2 className='display-4 fs-5 text-justify'>Data Science + PM</h2>
+            <h2 className='display-4 fs-5 text-justify pb-5'>Jersey City, NJ</h2>
           </Col>
         </Row>
         <Row>
@@ -146,8 +146,8 @@ export function Home() {
               }}
             ></Image>
             <h2 className='display-6 mt-3 pb-2'>Kero</h2>
-            <h2 className='display-6 fs-4 mt-2'>DevOps Engineering</h2>
-            <h2 className='display-6 fs-4 mt-2 pb-5'>Abu Dhabi, UAE</h2>
+            <h2 className='display-4 fs-5 text-justify'>DevOps Engineering</h2>
+            <h2 className='display-4 fs-5 text-justify pb-5'>Abu Dhabi, UAE</h2>
           </Col>
           <Col className="text-center">
             <Image
@@ -160,8 +160,8 @@ export function Home() {
               }}
             ></Image>
             <h2 className='display-6 mt-3 pb-2'>Manoj</h2>
-            <h2 className='display-6 fs-4 mt-2'>AI + Machine Learning</h2>
-            <h2 className='display-6 fs-4 mt-2 pb-5'>Parkland, FL</h2>
+            <h2 className='display-4 fs-5 text-justify'>AI + Machine Learning</h2>
+            <h2 className='display-4 fs-5 text-justify pb-5'>Parkland, FL</h2>
           </Col>
           <Col className="text-center">
             <Image
@@ -174,8 +174,8 @@ export function Home() {
               }}
             ></Image>
             <h2 className='display-6 mt-3 pb-2'>Manas</h2>
-            <h2 className='display-6 fs-4 mt-2'>AI</h2>
-            <h2 className='display-6 fs-4 mt-2 pb-5'>Houston, TX</h2>
+            <h2 className='display-4 fs-5 text-justify'>AI</h2>
+            <h2 className='display-4 fs-5 text-justify pb-5'>Houston, TX</h2>
           </Col>
         </Row>
       </Container>
