@@ -127,15 +127,59 @@ def displayPosts():
 
     return jsonify({'posts': posts}), 200
 
-#Add friendship to database based on username input
+#Add friendship to database based on username input (Manoj)
 @app.route('/addFriend', methods=['POST'])
 def addFriend():
-    return jsonify({"message": "hello world"})
+    # Get the current user's username from the request (you can use a session or token for this)
+    username = request.args.get('username')
 
-#From username input, return a list of the user's friends
+    # Get the friend's username from the request data (assuming it's sent as JSON)
+    data = request.get_json()
+    friend_username = data.get('friend_username')
+
+    # Check if the required fields are provided
+    if not username or not friend_username:
+        return jsonify({'message': "Both 'username' and 'friend_username' are required to add a friend."}), 400
+
+    # Find the current user in the database
+    user = mongo.db.People.find_one({'username': username})
+    if not user:
+        return jsonify({'message': "User not found."}), 404
+
+    # Check if the friend exists in the database
+    friend = mongo.db.People.find_one({'username': friend_username})
+    if not friend:
+        return jsonify({'message': "Friend not found."}), 404
+
+    # Check if the friend is not already in the user's friend list
+    if friend_username in user.get('friends', []):
+        return jsonify({'message': "This user is already your friend."}), 400
+
+    # Update the user's friend list
+    user['friends'].append(friend_username)
+    mongo.db.People.update({'username': username}, {'$set': {'friends': user['friends']}})
+
+    return jsonify({'message': f"You are now friends with {friend_username}."}), 200
+
+#From username input, return a list of the user's friends (Manoj)
 @app.route('/getFriends', methods=['GET'])
 def getFriends():
-    return jsonify({"message": "hello world"})
+    # Get the username from the request (you can use a session or token for this)
+    username = request.args.get('username')
+
+    # Check if a username is provided
+    if not username:
+        return jsonify({'message': "Username is required to retrieve the user's friends."}), 400
+
+    # Find the user in the database
+    user = mongo.db.People.find_one({'username': username})
+    if not user:
+        return jsonify({'message': "User not found."}), 404
+
+    # Retrieve the user's friend list
+    friends = user.get('friends', [])
+
+    return jsonify({'friends': friends}), 200
 
 #Add a user to a class/group based on the code/name that is input
 @app.route('/joinClass', methods=['POST'])
