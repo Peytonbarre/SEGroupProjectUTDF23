@@ -3,6 +3,7 @@ import { Navbar } from '../components/Navbar';
 import { Container, Row, Col, Image, Button } from 'react-bootstrap';
 
 export function Home() {
+  // PEYTON BARRE
   return (
     <>
       <Navbar />

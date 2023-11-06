@@ -19,6 +19,7 @@ export function SignUp() {
   };
 
   return (
+    // MANVIR CHAKAL
     <div className="bg-white vh-100 d-flex flex-column">
       <Container fluid className="vh-100 d-flex justify-content-center align-items-center">
         <Col md={3}>

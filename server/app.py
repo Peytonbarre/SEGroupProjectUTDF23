@@ -29,6 +29,7 @@ app.config['MONGO_URI'] = os.getenv("MONGOURI")
 #Starting the DB connection
 mongo = PyMongo(app)
 
+#PEYTON BARRE
 #Take from details, insert new user with details into DB
 @app.route('/register', methods=['POST'])
 def register():
@@ -46,6 +47,7 @@ def register():
     #Returns a success message when the password is successfully added
     return jsonify({"message": "Registration successful"})
 
+#PEYTON BARRE
 #Take from details, validate it against database
 @app.route('/login', methods=['GET'])
 def login():
@@ -66,6 +68,7 @@ def login():
     #Return auth fail if login does not work
     return jsonify({'message': "Login failed"}), 401
 
+#MANVIR CHAKAL
 #Take from details, insert new post to database (Manvir)
 @app.route('/createPost', methods=['POST'])
 def createPost():
@@ -93,6 +96,7 @@ def createPost():
     else:
         return jsonify({"message": "Post creation failed"}), 401
 
+#MANVIR CHAKAL
 #Search database for posts made by friends, sort by date (descending) (Manvir)
 @app.route('/displayPosts', methods=['GET']) 
 def displayPosts():
@@ -127,6 +131,7 @@ def displayPosts():
 
     return jsonify({'posts': posts}), 200
 
+#MANOJ MANIVANNAN
 #Add friendship to database based on username input (Manoj)
 @app.route('/addFriend', methods=['POST'])
 def addFriend():
@@ -161,6 +166,7 @@ def addFriend():
 
     return jsonify({'message': f"You are now friends with {friend_username}."}), 200
 
+#MANOJ MANIVANNAN
 #From username input, return a list of the user's friends (Manoj)
 @app.route('/getFriends', methods=['GET'])
 def getFriends():
@@ -202,6 +208,7 @@ def updateProfile():
     parseTranscript()
     return jsonify({"message": "hello world"})
 
+#MANAS
 # incriments the amount of likes by 1 and adds the user to the liked_users list
 @app.route('/likePost', methods=['PUT'])
 def likePost():
@@ -233,6 +240,8 @@ def likePost():
         return jsonify({"message": "Like added successfully"})
     
     return jsonify({"message": "You have already liked this post"}), 400
+
+#MANAS
 # deincrements the amount of likes by 1, with user validation
 @app.route('/unlikePost', methods=['PUT'])
 def unlikePost():
