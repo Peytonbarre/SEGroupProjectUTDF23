@@ -274,10 +274,33 @@ def unlikePost():
     
     return jsonify({"message": "You have not liked this post"}), 400
 
+#Mageto Nyakoni
 #Adds a new reply to a post based on postid and reply content
 @app.route('/replyPost', methods=['POST'])
 def replyPost():
-    return jsonify({"message": "hello world"})
+     # Get the post ID and reply content from the request
+    post_id = request.json.get('post_id')
+    reply_content = request.json.get('reply_content')
+
+    if not post_id or not reply_content:
+        return jsonify({"message": "Post ID and reply content are required"}), 400
+
+    # Check if the post exists
+    post = mongo.db.Posts.find_one({'_id': post_id})
+    if not post:
+        return jsonify({"message": "Post not found"}), 404
+
+    # Create a new reply
+    reply = {
+        'post_id': post_id,
+        'reply_content': reply_content,
+        'created_at': datetime.utcnow()  # Store the current UTC time
+    }
+
+    # Insert the reply into the database
+    mongo.db.Replies.insert_one(reply)
+
+    return jsonify({"message": "Reply added successfully"}), 201
 
 #Parses the transscript photo for the classes, sections, and professor
 def parseTranscript():
