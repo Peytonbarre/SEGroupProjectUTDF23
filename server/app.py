@@ -202,17 +202,68 @@ def updateProfile():
     parseTranscript()
     return jsonify({"message": "hello world"})
 
-#incriments the amount of likes by 1
-#need to include user checking I think
+# incriments the amount of likes by 1 and adds the user to the liked_users list
 @app.route('/likePost', methods=['PUT'])
 def likePost():
-    return jsonify({"message": "hello world"})
-
-#deincriments the amount of likes by 1
-#Same as above, add user validation
+    # Get the post ID from the request
+    post_id = request.json.get('post_id')
+    
+    # Get the username of the logged-in user (you should implement your own user authentication logic)
+    username = request.json.get('username')
+    
+    if not post_id or not username:
+        return jsonify({"message": "Post ID and username are required"}), 400
+    
+    # Check if the post exists
+    post = mongo.db.Posts.find_one({'_id': post_id})
+    if not post:
+        return jsonify({"message": "Post not found"}), 404
+    
+    # Check if the user has already liked the post
+    liked_users = post.get('liked_users', [])
+    if username not in liked_users:
+        # Increment the likes count
+        likes_count = post.get('likes', 0)
+        likes_count += 1
+        # Add the user to the liked_users list
+        liked_users.append(username)
+        
+        # Update the post with the new likes count and liked_users list
+        mongo.db.Posts.update_one({'_id': post_id}, {'$set': {'likes': likes_count, 'liked_users': liked_users}})
+        return jsonify({"message": "Like added successfully"})
+    
+    return jsonify({"message": "You have already liked this post"}), 400
+# deincrements the amount of likes by 1, with user validation
 @app.route('/unlikePost', methods=['PUT'])
 def unlikePost():
-    return jsonify({"message": "hello world"})
+    # Get the post ID from the request
+    post_id = request.json.get('post_id')
+    
+    # Get the username of the logged-in user (you should implement your own user authentication logic)
+    username = request.json.get('username')
+    
+    if not post_id or not username:
+        return jsonify({"message": "Post ID and username are required"}), 400
+    
+    # Check if the post exists
+    post = mongo.db.Posts.find_one({'_id': post_id})
+    if not post:
+        return jsonify({"message": "Post not found"}), 404
+    
+    # Check if the user has already liked the post
+    liked_users = post.get('liked_users', [])
+    if username in liked_users:
+        # Remove the user from the liked_users list
+        liked_users.remove(username)
+        # Update the likes count
+        likes_count = post.get('likes', 0)
+        if likes_count > 0:
+            likes_count -= 1
+            # Update the post with the new likes count and liked_users list
+            mongo.db.Posts.update_one({'_id': post_id}, {'$set': {'likes': likes_count, 'liked_users': liked_users}})
+            return jsonify({"message": "Like removed successfully"})
+    
+    return jsonify({"message": "You have not liked this post"}), 400
 
 #Adds a new reply to a post based on postid and reply content
 @app.route('/replyPost', methods=['POST'])
