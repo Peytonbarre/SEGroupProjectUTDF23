@@ -202,12 +202,34 @@ def sendClassMessage():
 def getClassMessages():
     return jsonify({"message": "hello world"})
 
+#Mageto Nyakoni
 #Updates the user's profile with given info, if new transcript then parse it
 @app.route('/updateProfile', methods=['PUT'])
 def updateProfile():
-    parseTranscript()
-    return jsonify({"message": "hello world"})
+        # Get the username from the request (you can use a session or token for this)
+    username = request.args.get('username')
 
+    # Check if a username is provided
+    if not username:
+        return jsonify({'message': "Username is required to update the profile."}), 400
+
+    # Find the user in the database
+    user = mongo.db.People.find_one({'username': username})
+    if not user:
+        return jsonify({'message': "User not found."}), 404
+
+    # Get the updated profile information from the request JSON data
+    updated_profile = request.json
+
+    # Check if there is new transcript data to parse
+    if 'transcript' in updated_profile:
+        # Call the parseTranscript() function to process the transcript data
+        parseTranscript(updated_profile['transcript'])
+
+    # Update the user's profile information in the database
+    mongo.db.People.update_one({'username': username}, {'$set': updated_profile})
+
+    return jsonify({"message": "Profile updated successfully"}), 200
 #MANAS
 # incriments the amount of likes by 1 and adds the user to the liked_users list
 @app.route('/likePost', methods=['PUT'])
