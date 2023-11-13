@@ -31,3 +31,4 @@ server/.env
 Lib/
 Scripts/
 pyvenv.cfg
+/bin/

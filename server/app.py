@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, session
 from flask_cors import CORS
 from flask_pymongo import PyMongo
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -28,6 +28,8 @@ app.config['MONGO_URI'] = os.getenv("MONGOURI")
 
 #Starting the DB connection
 mongo = PyMongo(app)
+
+app.secret_key = 'your_secret_key'  # Set a secret key for sessions
 
 #PEYTON BARRE
 #Take from details, insert new user with details into DB
@@ -61,12 +63,21 @@ def login():
 
     #Checks if the user exists and if the password matches (Using hashing)
     if user and check_password_hash(user['password'], password):
-        #Returns message if login works
-        #TODO create JWK that carries a key and perform route forwarding
+        session['username'] = username  # Store username in session
         return jsonify({'message': "Login successful"})
     
     #Return auth fail if login does not work
     return jsonify({'message': "Login failed"}), 401
+
+#MANVIR CHAKAL
+#get the current logged user name
+@app.route('/getCurrentUsername', methods=['GET'])
+def getCurrentUsername():
+    username = session.get('username')
+    if username:
+        return jsonify({'username': username})
+    else:
+        return jsonify({'message': "No user logged in"}), 401
 
 #MANVIR CHAKAL
 #Take from details, insert new post to database (Manvir)
