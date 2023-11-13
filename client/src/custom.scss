@@ -1,0 +1,11 @@
+// change the theme
+$theme-colors: (
+  'text': white,
+  'background': #fffdfa,
+  'primary': #f7a146,
+  'secondary': #c2dffe,
+  'accent': #0602f2,
+);
+
+// Import Bootstrap and its default variables
+@import '~bootstrap/scss/bootstrap.scss';

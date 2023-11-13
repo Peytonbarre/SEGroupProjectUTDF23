@@ -1,10 +1,11 @@
 import React from 'react';
 import { Container, Nav, Navbar as BootstrapNav } from 'react-bootstrap';
+import '../styling/Navbar.css'
 
 export function Navbar() {
   // PEYTON BARRE
   return (
-    <BootstrapNav bg="light" data-bs-theme="light" className="shadow-sm sticky-top">
+    <BootstrapNav className="glass-navbar">
       <Container>
         <BootstrapNav.Brand href="/">ClassMeet</BootstrapNav.Brand>
         <BootstrapNav.Toggle aria-controls="basic-navbar-nav" />
