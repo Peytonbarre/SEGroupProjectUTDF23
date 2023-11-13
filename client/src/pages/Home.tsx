@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navbar } from '../components/Navbar';
 import { Container, Row, Col, Image, Button } from 'react-bootstrap';
+import { BackgroundAnimation } from '../components/BackgroundAnimation';
 
 export function Home() {
   // PEYTON BARRE
@@ -50,6 +51,7 @@ export function Home() {
             </h5>
           </Col>
         </Row>
+        
         <Row className="mt-5">
           <Col md={8} className="mt-5">
             <h1 className="fs-1 fw-bold" id="about">
