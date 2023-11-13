@@ -202,12 +202,34 @@ def sendClassMessage():
 def getClassMessages():
     return jsonify({"message": "hello world"})
 
+#Mageto Nyakoni
 #Updates the user's profile with given info, if new transcript then parse it
 @app.route('/updateProfile', methods=['PUT'])
 def updateProfile():
-    parseTranscript()
-    return jsonify({"message": "hello world"})
+        # Get the username from the request (you can use a session or token for this)
+    username = request.args.get('username')
 
+    # Check if a username is provided
+    if not username:
+        return jsonify({'message': "Username is required to update the profile."}), 400
+
+    # Find the user in the database
+    user = mongo.db.People.find_one({'username': username})
+    if not user:
+        return jsonify({'message': "User not found."}), 404
+
+    # Get the updated profile information from the request JSON data
+    updated_profile = request.json
+
+    # Check if there is new transcript data to parse
+    if 'transcript' in updated_profile:
+        # Call the parseTranscript() function to process the transcript data
+        parseTranscript(updated_profile['transcript'])
+
+    # Update the user's profile information in the database
+    mongo.db.People.update_one({'username': username}, {'$set': updated_profile})
+
+    return jsonify({"message": "Profile updated successfully"}), 200
 #MANAS
 # incriments the amount of likes by 1 and adds the user to the liked_users list
 @app.route('/likePost', methods=['PUT'])
@@ -274,10 +296,33 @@ def unlikePost():
     
     return jsonify({"message": "You have not liked this post"}), 400
 
+#Mageto Nyakoni
 #Adds a new reply to a post based on postid and reply content
 @app.route('/replyPost', methods=['POST'])
 def replyPost():
-    return jsonify({"message": "hello world"})
+     # Get the post ID and reply content from the request
+    post_id = request.json.get('post_id')
+    reply_content = request.json.get('reply_content')
+
+    if not post_id or not reply_content:
+        return jsonify({"message": "Post ID and reply content are required"}), 400
+
+    # Check if the post exists
+    post = mongo.db.Posts.find_one({'_id': post_id})
+    if not post:
+        return jsonify({"message": "Post not found"}), 404
+
+    # Create a new reply
+    reply = {
+        'post_id': post_id,
+        'reply_content': reply_content,
+        'created_at': datetime.utcnow()  # Store the current UTC time
+    }
+
+    # Insert the reply into the database
+    mongo.db.Replies.insert_one(reply)
+
+    return jsonify({"message": "Reply added successfully"}), 201
 
 #Parses the transscript photo for the classes, sections, and professor
 def parseTranscript():
