@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Container, Form, Button, Image, Card, Col } from 'react-bootstrap';
 import axios from 'axios';
+import '../styling/glasscard.css'
+import '../styling/input.css'
 
 export function SignUp() {
   const [username, setUsername] = useState('');
@@ -31,24 +33,23 @@ export function SignUp() {
 
   return (
     // MANVIR CHAKAL
-    <div className="bg-white vh-100 d-flex flex-column">
+    <div className="bg-white vh-100 d-flex flex-column" style={{background: 'linear-gradient(to top right, #EEDFFC, #5645BA)'}}>
       <Container fluid className="vh-100 d-flex justify-content-center align-items-center">
         <Col md={3}>
-          <Card className="text-center">
-            <Card.Header>
+          <Card className="text-center glass-card-input">
               <Image
                 src="/logo.png"
                 alt="Class Meet"
                 style={{ width: '200px', height: '200px', margin: '0 auto' }}
                 rounded
-                className="my-5"
+                className="my-3"
               />
-            </Card.Header>
             <Card.Body>
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3">
                   <Form.Label>Username:</Form.Label>
                   <Form.Control
+                  className="custom-input"
                     type="text"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
@@ -57,6 +58,7 @@ export function SignUp() {
                 <Form.Group className="mb-3">
                   <Form.Label>Password:</Form.Label>
                   <Form.Control
+                  className="custom-input"
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -65,19 +67,18 @@ export function SignUp() {
                 <Form.Group className="mb-3">
                   <Form.Label>Confirm Password:</Form.Label>
                   <Form.Control
+                  className="custom-input"
                     type="password"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                   />
                 </Form.Group>
-                <Button type="submit" variant="primary">
+                <Button type="submit" variant="secondary">
                   SIGN UP
                 </Button>
               </Form>
             </Card.Body>
-            <Card.Footer>
               <a href="/login">Already have an account? Log In</a>
-            </Card.Footer>
           </Card>
         </Col>
       </Container>
