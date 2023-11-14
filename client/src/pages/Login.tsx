@@ -1,35 +1,42 @@
 import React, { useState } from 'react';
 import { Container, Form, Button, Image, Card, Col } from 'react-bootstrap';
 import axios from 'axios';
-import { Navigate } from 'react-router-dom';
 import "../styling/input.css"
+import { useNavigate } from 'react-router-dom';
+
+const serverURL = 'http://127.0.0.1:5000';
 
 export function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
-    const handleSubmit = async (e: React.FormEvent) => {
-      e.preventDefault();
-    
-      try {
-        const response = await axios.post('http://127.0.0.1:5000/login', {
-          username: username,
-          password: password,
-        });
-    
-        // Assuming the backend returns an accessToken upon successful login
-        const accessToken = response.data.accessToken;
-    
-        // You can now handle the accessToken as needed, such as storing it in local storage or a state variable
-        console.log('Access Token:', accessToken);
-        <Navigate replace to="/dashboard"/>
-      } catch (error) {
-        // Handle authentication failure
+    e.preventDefault();
+
+    try {
+      const response = await axios.post(`${serverURL}/login`, {
+        username: username,
+        password: password,
+      });
+
+      // Store the token in local storage or in-memory storage as per your requirement
+      localStorage.setItem('access_token', response.data.access_token);
+
+      // Set the axios default header to include the JWT token
+      axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.access_token}`;
+
+      console.log('Login successful, Access Token:', response.data.access_token);
+      navigate("/dashboard"); // Use navigate to redirect to dashboard
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const message = error.response?.data.message || 'An unknown error occurred';
+        console.error('Authentication failed:', message);
+      } else {
         console.error('Authentication failed:', error);
       }
-    };
-  }
+    }
+  };
 
   return (
     // MANVIR CHAKAL

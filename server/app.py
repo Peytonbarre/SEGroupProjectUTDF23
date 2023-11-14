@@ -1,9 +1,10 @@
-from flask import Flask, jsonify, request, session
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 from flask_pymongo import PyMongo
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 from dotenv import load_dotenv
-from datetime import datetime
+from datetime import datetime, timedelta
 import os
 import pymongo
 
@@ -20,7 +21,6 @@ AVAILABLE DATABASE+COLLECTIONS:
 
 #Creating app and CORSing application
 app = Flask(__name__)
-CORS(app)
 
 #Loading and creating environment variables for MongoDB
 load_dotenv()
@@ -29,7 +29,12 @@ app.config['MONGO_URI'] = os.getenv("MONGOURI")
 #Starting the DB connection
 mongo = PyMongo(app)
 
-app.secret_key = 'your_secret_key'  # Set a secret key for sessions
+CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}}, supports_credentials=True)
+
+# Setup the Flask-JWT-Extended extension
+app.config['JWT_SECRET_KEY'] = 'super-secret'  # Change this to a random secret key
+app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(hours=1)
+jwt = JWTManager(app)
 
 #PEYTON BARRE
 #Take from details, insert new user with details into DB
@@ -51,33 +56,20 @@ def register():
 
 #PEYTON BARRE
 #Take from details, validate it against database
-@app.route('/login', methods=['GET'])
+@app.route('/login', methods=['POST'])
 def login():
-    #Gets information from the frontend form
     message = request.json
-    username = message['username']
-    password = message['password']
+    username = message.get('username')
+    password = message.get('password')
 
-    #Finds the user from the database based on info given
     user = mongo.db.People.find_one({'username': username})
 
-    #Checks if the user exists and if the password matches (Using hashing)
     if user and check_password_hash(user['password'], password):
-        session['username'] = username  # Store username in session
-        return jsonify({'message': "Login successful"})
-    
-    #Return auth fail if login does not work
-    return jsonify({'message': "Login failed"}), 401
+        # Create JWT token
+        access_token = create_access_token(identity=username)
+        return jsonify({'message': "Login successful", 'access_token': access_token}), 200
 
-#MANVIR CHAKAL
-#get the current logged user name
-@app.route('/getCurrentUsername', methods=['GET'])
-def getCurrentUsername():
-    username = session.get('username')
-    if username:
-        return jsonify({'username': username})
-    else:
-        return jsonify({'message': "No user logged in"}), 401
+    return jsonify({'message': "Login failed"}), 401
 
 #MANVIR CHAKAL
 #Take from details, insert new post to database (Manvir)
@@ -146,56 +138,42 @@ def displayPosts():
 #Add friendship to database based on username input (Manoj)
 @app.route('/addFriend', methods=['POST'])
 def addFriend():
-    # Get the current user's username from the request (you can use a session or token for this)
-    username = request.args.get('username')
+    current_user = get_jwt_identity()
 
-    # Get the friend's username from the request data (assuming it's sent as JSON)
-    data = request.get_json()
-    friend_username = data.get('friend_username')
+    # Get the username of the friend to add
+    friend_username = request.json.get('username')
 
-    # Check if the required fields are provided
-    if not username or not friend_username:
-        return jsonify({'message': "Both 'username' and 'friend_username' are required to add a friend."}), 400
-
-    # Find the current user in the database
-    user = mongo.db.People.find_one({'username': username})
-    if not user:
-        return jsonify({'message': "User not found."}), 404
-
-    # Check if the friend exists in the database
+    # Check if a username is provided
+    if not friend_username:
+        return jsonify({'message': "Username is required to add a friend."}), 400
+    
+    # Check if the friend exists
     friend = mongo.db.People.find_one({'username': friend_username})
     if not friend:
         return jsonify({'message': "Friend not found."}), 404
-
-    # Check if the friend is not already in the user's friend list
+    
+    # Check if the friend is already in the user's friends list
+    user = mongo.db.People.find_one({'username': current_user})
     if friend_username in user.get('friends', []):
-        return jsonify({'message': "This user is already your friend."}), 400
-
-    # Update the user's friend list
+        return jsonify({'message': "Friend already added."}), 400
+    
+    # Add the friend to the user's friends list
     user['friends'].append(friend_username)
-    mongo.db.People.update({'username': username}, {'$set': {'friends': user['friends']}})
-
-    return jsonify({'message': f"You are now friends with {friend_username}."}), 200
+    return jsonify({'message': "Friend added successfully."}), 200
 
 #MANOJ MANIVANNAN
 #From username input, return a list of the user's friends (Manoj)
 @app.route('/getFriends', methods=['GET'])
-def getFriends():
-    # Get the username from the request (you can use a session or token for this)
-    username = request.args.get('username')
+@jwt_required()  # This will require the access token in the header
+def get_friends():
+    # Get the identity from the JWT
+    current_user = get_jwt_identity()
 
-    # Check if a username is provided
-    if not username:
-        return jsonify({'message': "Username is required to retrieve the user's friends."}), 400
-
-    # Find the user in the database
-    user = mongo.db.People.find_one({'username': username})
+    user = mongo.db.People.find_one({'username': current_user})
     if not user:
         return jsonify({'message': "User not found."}), 404
 
-    # Retrieve the user's friend list
     friends = user.get('friends', [])
-
     return jsonify({'friends': friends}), 200
 
 #Add a user to a class/group based on the code/name that is input
