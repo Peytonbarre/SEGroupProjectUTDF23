@@ -21,6 +21,7 @@ AVAILABLE DATABASE+COLLECTIONS:
 
 #Creating app and CORSing application
 app = Flask(__name__)
+CORS(app)
 
 #Loading and creating environment variables for MongoDB
 load_dotenv()
@@ -137,6 +138,7 @@ def displayPosts():
 #MANOJ MANIVANNAN
 #Add friendship to database based on username input (Manoj)
 @app.route('/addFriend', methods=['POST'])
+@jwt_required()  # This will require the access token in the header
 def addFriend():
     current_user = get_jwt_identity()
 
@@ -158,8 +160,17 @@ def addFriend():
         return jsonify({'message': "Friend already added."}), 400
     
     # Add the friend to the user's friends list
-    user['friends'].append(friend_username)
-    return jsonify({'message': "Friend added successfully."}), 200
+    update_result = mongo.db.People.update_one(
+        {'username': current_user},
+        {'$addToSet': {'friends': friend_username}}  # $addToSet prevents duplicates
+    )
+
+    # Check if the update was successful
+    if update_result.modified_count == 1:
+        return jsonify({'message': "Friend added successfully."}), 200
+    else:
+        return jsonify({'message': "Failed to add friend."}), 500
+    
 
 #MANOJ MANIVANNAN
 #From username input, return a list of the user's friends (Manoj)
