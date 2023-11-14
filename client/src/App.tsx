@@ -7,6 +7,7 @@ import { Posts } from './pages/Posts';
 import { Login } from './pages/Login';
 import { SignUp } from './pages/Signup';
 import { Landing } from './pages/Landing';
+import { Dashboard } from './pages/Dashboard';
 import { BackgroundAnimation } from './components/BackgroundAnimation';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="/" element={<Landing/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/profile" element={<Profile/>}/>
+        <Route path="/dashboard" element={<Dashboard/>}/>
         <Route path="/friends" element={<Friends/>}/>
         <Route path="/posts" element={<Posts/>}/>
         <Route path="/signup" element={<SignUp/>}/>

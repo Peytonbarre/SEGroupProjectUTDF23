@@ -1,0 +1,66 @@
+.glass-card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Adjust as needed */
+  }
+  
+  .glass-card {
+    /* background: rgba(255, 255, 255, 0.2);  */
+    background: linear-gradient(to top right, rgba(238, 223, 252, 0.75), rgba(86, 69, 186, .75));
+    width: 85%;
+    height: 85%;
+    border: none;
+    border-radius: 75px;
+    padding: 20px;
+    /* backdrop-filter: blur(10px); */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    transform: translateZ(0);
+  }
+
+  .glass-card-input {
+    background: rgba(255, 255, 255, 0.2); 
+    width: 85%;
+    height: 85%;
+    border: none;
+    border-radius: 75px;
+    padding: 20px;
+    /* backdrop-filter: blur(10px); */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    transform: translateZ(0);
+  }
+  
+  .navbar-logo {
+    font-family: 'Inter', sans-serif;
+    font-size: 2.5rem; /* Adjust the font size */
+    font-weight: 900; /* Adjust the font weight */
+    color: #5645BA; /* Adjust the text color */
+    text-transform: uppercase; /* Uppercase for a modern feel */
+    letter-spacing: 1px; /* Adjust letter spacing for better readability */
+    margin: 0; /* Reset margin */
+    padding: 0px 0; /* Add padding for spacing */
+    transition: color 0.3s ease; /* Smooth color transition on hover */
+    /* Optional: Add a subtle text shadow for depth */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  
+  }
+
+  .glass-card-container .big-title{
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: 64px;
+    color: #5645BA; /* Adjust the text color */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+
+  }
+
+  .small-title{
+    font-family: 'Inter', sans-serif;
+    font-size: 64px;
+
+  }
+
+  .landing-text{
+    font-family: 'Inter', sans-serif;
+    font-size: 32px;
+  }

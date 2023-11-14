@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Container, Form, Button, Image, Card, Col } from 'react-bootstrap';
 import axios from 'axios';
-import { redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
+import "../styling/input.css"
 
 export function Login() {
   const [username, setUsername] = useState('');
@@ -22,7 +23,7 @@ export function Login() {
     
         // You can now handle the accessToken as needed, such as storing it in local storage or a state variable
         console.log('Access Token:', accessToken);
-        
+        <Navigate replace to="/dashboard"/>
       } catch (error) {
         // Handle authentication failure
         console.error('Authentication failed:', error);
@@ -32,19 +33,17 @@ export function Login() {
 
   return (
     // MANVIR CHAKAL
-    <div className="bg-white vh-100 d-flex flex-column">
+    <div className="bg-white vh-100 d-flex flex-column" style={{background: 'linear-gradient(to top right, #EEDFFC, #5645BA)'}}>
       <Container fluid className="vh-100 d-flex justify-content-center align-items-center">
         <Col md={3}>
-          <Card className="text-center">
-            <Card.Header>
+          <Card className="glass-card-input text-center">
               <Image
                 src="/logo.png"
                 alt="Class Meet"
                 style={{ width: '200px', height: '200px', margin: '0 auto' }}
                 rounded
-                className="my-5"
+                className="my-3"
               />
-            </Card.Header>
             <Card.Body>
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3">
@@ -53,6 +52,7 @@ export function Login() {
                     type="text"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
+                    className="custom-input"
                   />
                 </Form.Group>
                 <Form.Group className="mb-3">
@@ -61,16 +61,15 @@ export function Login() {
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    className="custom-input"
                   />
                 </Form.Group>
-                <Button type="submit" variant="primary">
+                <Button type="submit" variant="secondary">
                   LOG IN
                 </Button>
               </Form>
             </Card.Body>
-            <Card.Footer>
-              <a href="#">Forgot Username or Password?</a>
-            </Card.Footer>
+              <a href="/signup">Don't have an account? Sign up!</a>
           </Card>
         </Col>
       </Container>
