@@ -6,6 +6,7 @@ import { loadSlim } from 'tsparticles-slim';
 import { Card, Row, Col, Button } from 'react-bootstrap';
 import { Home } from './Home';
 import '../styling/glasscard.css'
+import { BackgroundAnimation } from '../components/BackgroundAnimation';
 import { Link } from 'react-router-dom';
 
 export function Landing() {
@@ -27,14 +28,16 @@ export function Landing() {
 
   return (
     <div
-      style={{
-        position: 'fixed',
-        width: '100vw',
-        height: '100vh',
-        background: 'linear-gradient(to top right, #EEDFFC, #5645BA)',
-      }}
+      // style={{
+      //   position: 'fixed',
+      //   width: '100vw',
+      //   height: '100vh',
+      //   background: 'linear-gradient(to top right, #EEDFFC, #5645BA)',
+      // }}
     >
-      <Particles
+            <BackgroundAnimation/>
+
+      {/* <Particles
         id="tsparticles"
         init={particlesInit}
         loaded={particlesLoaded}
@@ -107,7 +110,7 @@ export function Landing() {
           },
           detectRetina: true,
         }}
-      />
+      /> */}
       <div className='glass-card-container'>
         <Card className='glass-card'>
             <Card.Body style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>

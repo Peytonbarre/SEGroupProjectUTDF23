@@ -1,4 +1,4 @@
-/* @keyframes move {
+@keyframes move {
     100% {
         transform: translate3d(0, 0, 1px) rotate(360deg);
     }
@@ -11,7 +11,7 @@
     height: 100vh;
     top: 0;
     left: 0;
-    background: linear-gradient(to top right, #EEDFFC, #5645BA);
+    background: linear-gradient(to top right, #a1a5fe, #5645BA);
     overflow: hidden;
 }
 
@@ -101,4 +101,4 @@
     animation-delay: -164s;
     transform-origin: -1vw 5vh;
     box-shadow: 98vmin 0 12.531604846593464vmin currentColor;
-} */
+}

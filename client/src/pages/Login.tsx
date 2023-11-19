@@ -45,11 +45,11 @@ export function Login() {
         <Col md={3}>
           <Card className="glass-card-input text-center">
               <Image
-                src="/logo.png"
+                src={require('../assets/classmeet-logo.png')}
                 alt="Class Meet"
-                style={{ width: '200px', height: '200px', margin: '0 auto' }}
+                style={{ width: '300px', height: '300px', margin: '0 auto' }}
                 rounded
-                className="my-3"
+                className=""
               />
             <Card.Body>
               <Form onSubmit={handleSubmit}>

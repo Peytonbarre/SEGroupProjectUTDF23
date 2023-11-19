@@ -37,12 +37,12 @@ export function SignUp() {
       <Container fluid className="vh-100 d-flex justify-content-center align-items-center">
         <Col md={3}>
           <Card className="text-center glass-card-input">
-              <Image
-                src="/logo.png"
+            <Image
+                src={require('../assets/classmeet-logo.png')}
                 alt="Class Meet"
-                style={{ width: '200px', height: '200px', margin: '0 auto' }}
+                style={{ width: '300px', height: '300px', margin: '0 auto' }}
                 rounded
-                className="my-3"
+                className=""
               />
             <Card.Body>
               <Form onSubmit={handleSubmit}>
