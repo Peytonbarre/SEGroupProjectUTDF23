@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Form, Button, Image, Card, Col } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../styling/glasscard.css'
 import '../styling/input.css'
@@ -8,20 +9,25 @@ export function SignUp() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
       console.error('Passwords do not match');
+      setErrorMessage('DONOTMATCH');
       return;
     }    
+    setErrorMessage('');
       try {
         const response = await axios.post('http://127.0.0.1:5000/register', {
           username: username,
           password: password,
         });
         console.log(response);
+        navigate("/login");
       } catch (error) {
         // Handle authentication failure
         console.error('Authentication failed:', error);
@@ -74,8 +80,11 @@ export function SignUp() {
                   />
                 </Form.Group>
                 <Button type="submit" variant="secondary">
-                  SIGN UP
+                  Sign Up
                 </Button>
+                {errorMessage && (
+                  <div className='mt-4' style={{color: "red"}}>Passwords do not match</div>
+                )}
               </Form>
             </Card.Body>
               <a href="/login">Already have an account? Log In</a>

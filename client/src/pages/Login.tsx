@@ -9,6 +9,7 @@ const serverURL = 'http://127.0.0.1:5000';
 export function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -27,13 +28,16 @@ export function Login() {
       axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.access_token}`;
 
       console.log('Login successful, Access Token:', response.data.access_token);
+      setErrorMessage('');
       navigate("/dashboard"); // Use navigate to redirect to dashboard
     } catch (error) {
       if (axios.isAxiosError(error)) {
         const message = error.response?.data.message || 'An unknown error occurred';
         console.error('Authentication failed:', message);
+        setErrorMessage(message);
       } else {
         console.error('Authentication failed:', error);
+        setErrorMessage("Failed")
       }
     }
   };
@@ -72,8 +76,11 @@ export function Login() {
                   />
                 </Form.Group>
                 <Button type="submit" variant="secondary">
-                  LOG IN
+                  Log In
                 </Button>
+                {errorMessage && (
+                  <div className='mt-4' style={{color: "red"}}>Account username/password not matched</div>
+                )}
               </Form>
             </Card.Body>
               <a href="/signup">Don't have an account? Sign up!</a>

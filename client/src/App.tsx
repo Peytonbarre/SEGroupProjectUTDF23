@@ -12,6 +12,7 @@ import { Classes } from './pages/Classes';
 import { Profile } from './pages/Profile';
 import { Class } from './pages/Class';
 import { Messages } from './pages/Messages';
+import ProtectedRoute from './util/ProtectedRoute';
 
 function App() {
   return (

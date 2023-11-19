@@ -1,8 +1,9 @@
-import React, { useState, ChangeEvent, FormEvent } from 'react';
+import React, { useEffect, useState, ChangeEvent, FormEvent } from 'react';
 import { Container, Form, Button, Image, Card, Col, Row } from 'react-bootstrap';
 import '../styling/input.css';
 
 export function Profile() {
+
   return (
     <div
       className="bg-white vh-100 d-flex flex-column overflow-hidden"
