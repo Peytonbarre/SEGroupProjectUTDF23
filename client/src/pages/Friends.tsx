@@ -218,7 +218,7 @@ export function Friends() {
               }}
               className=""
             >
-              Add Friend
+              <Button variant='secondary' className='mt-3'>Add Friend</Button>
             </div>
           </div>
         </Card.Body>

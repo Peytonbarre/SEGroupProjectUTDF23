@@ -1,7 +1,14 @@
+
 import React from 'react';
 import { Card, Row, Col, Form, Button } from 'react-bootstrap';
+import {MultiChatWindow, useMultiChatLogic,MultiChatSocket} from 'react-chat-engine-advanced'
+const projectId: string='9fcaab4a-4aa1-4689-a953-d67efbda387a'
+const username:string='Manas Singh'
+const secret: string='1234'
+
 
 export function Messages() {
+  const chatProps = useMultiChatLogic(projectId,username,secret)
   return (
     <div
       className="vh-100 d-flex flex-column align-items-center justify-content-center overflow-hidden"
@@ -125,108 +132,9 @@ export function Messages() {
           borderRadius: '50px',
         }}
       >
-        <Card.Body className="d-flex align-items-center p-0">
-          <div
-            className="m-0 p-3 d-flex flex-column justify-content-start"
-            style={{
-              width: '25%',
-              height: '100%',
-              background: 'rgba(255, 255, 255, 0.2)',
-              borderRadius: '50px 0 0 50px',
-            }}
-          >
-            <Row className="my-3">
-              <Col md="auto">
-                <div
-                  style={{
-                    width: '100px',
-                    height: '100px',
-                    borderRadius: '100px',
-                    background: 'gray',
-                  }}
-                />
-              </Col>
-              <Col className="d-flex flex-column justify-content-center">
-                <h3
-                  style={{
-                    fontFamily: 'Poppins, sans-serif',
-                    color: '#263D54',
-                    fontWeight: '500',
-                    fontSize: '25px',
-                  }}
-                >
-                  Manas Singh
-                </h3>
-                <h3
-                  style={{
-                    fontFamily: 'Poppins, sans-serif',
-                    color: '#263D54',
-                    fontWeight: '500',
-                    fontSize: '17px',
-                  }}
-                >
-                  This is the last chat
-                </h3>
-              </Col>
-            </Row>
-            <Row className="d-flex align-items-center justify-content-center my-2">
-              <div
-                style={{
-                  borderTop: '1px solid #263D54',
-                  width: '75%',
-                }}
-              />
-            </Row>
-            <Row className="my-3">
-              <Col md="auto">
-                <div
-                  style={{
-                    width: '100px',
-                    height: '100px',
-                    borderRadius: '100px',
-                    background: 'gray',
-                  }}
-                />
-              </Col>
-              <Col className="d-flex flex-column justify-content-center">
-                <h3
-                  style={{
-                    fontFamily: 'Poppins, sans-serif',
-                    color: '#263D54',
-                    fontWeight: '500',
-                    fontSize: '25px',
-                  }}
-                >
-                  Manas Singh
-                </h3>
-                <h3
-                  style={{
-                    fontFamily: 'Poppins, sans-serif',
-                    color: '#263D54',
-                    fontWeight: '500',
-                    fontSize: '17px',
-                  }}
-                >
-                  This is the last chat
-                </h3>
-              </Col>
-            </Row>
-          </div>
-          <div className='d-flex align-items-end justify-content-center' style={{ width: '75%', height: '100%' }}>
-            <Form style={{width: "90%"}}>
-              <Row className='my-4'>
-                <Col>
-                  <Form.Group controlId="newMessage">
-                    <Form.Control type="text" placeholder="Type your message..." />
-                  </Form.Group>
-                </Col>
-                <Col md="auto">
-                  <Button variant="secondary">Send</Button>
-                </Col>
-              </Row>
-            </Form>
-          </div>
-        </Card.Body>
+        <MultiChatSocket{...chatProps}/>
+        <MultiChatWindow{...chatProps}/>
+        
       </Card>
     </div>
   );
