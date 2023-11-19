@@ -5,20 +5,10 @@ import { Card, Row, Col } from "react-bootstrap";
 export function Classes() {
   return (
     <div
-      className="vh-100 d-flex align-items-center justify-content-center overflow-hidden"
-      // style={{ background: "linear-gradient(to top right, #a1a5fe, #5645BA)" }}
+      className="vh-100 d-flex flex-column align-items-center justify-content-center overflow-hidden"
+      style={{ background: "linear-gradient(to top right, #a1a5fe, #5645BA)" }}
     >
-      <BackgroundAnimation />
-      <Card
-        style={{
-          width: "90%",
-          height: "90%",
-          backdropFilter: "blur(10px)",
-          background: "rgba(255, 255, 255, 0.2)",
-          borderRadius: "50px",
-        }}
-      >
-        <Row className="mt-5 justify-content-center">
+      <Row className="mt-4 mb-4  justify-content-center">
           <Col md="auto">
             <a
               href="/profile"
@@ -118,11 +108,20 @@ export function Classes() {
             </a>
           </Col>
         </Row>
+      <Card
+        style={{
+          width: "90%",
+          height: "85%",
+          backdropFilter: "blur(10px)",
+          background: "rgba(255, 255, 255, 0.2)",
+          borderRadius: "50px",
+        }}
+      >
         <Card.Body className="d-flex p-0">
           <div
             style={{
               width: "15%",
-              height: "45%",
+              height: "40%",
               background: "rgba(255, 255, 255, 0.4)",
               borderRadius: "50px",
             }}
@@ -185,7 +184,7 @@ export function Classes() {
           <div
             style={{
               width: "15%",
-              height: "45%",
+              height: "40%",
               background: "rgba(255, 255, 255, 0.1)",
               outlineStyle: "dashed",
               outlineColor: "#263D54",
