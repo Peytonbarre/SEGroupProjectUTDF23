@@ -188,7 +188,7 @@ export function Classes() {
               height: "45%",
               background: "rgba(255, 255, 255, 0.1)",
               outlineStyle: "dashed",
-              outlineColor: "gray",
+              outlineColor: "#263D54",
               borderRadius: "50px",
             }}
             className="m-5 mt-4 me-0 d-flex flex-column align-items-center justify-content-center"
@@ -196,7 +196,7 @@ export function Classes() {
             <div
               style={{
                 fontFamily: "Poppins, sans-serif",
-                color: "gray",
+                color: "#263D54",
                 fontWeight: "500",
                 fontSize: "20px",
               }}
