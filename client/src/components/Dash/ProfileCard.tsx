@@ -5,12 +5,16 @@ export function ProfileCard() {
   return (
     <div>
       <Row className="d-flex justify-content-center">
-        <div
+        <img src={require('../../assets/peyton.jpg')}
           style={{
             width: "150px",
             height: "150px",
             borderRadius: "150px",
-            background: "gray",
+            objectFit: "fill",
+            borderWidth: "2px",
+            borderStyle: "solid",
+            borderColor: "#263D54",
+            padding: "0"
           }}
         />
       </Row>

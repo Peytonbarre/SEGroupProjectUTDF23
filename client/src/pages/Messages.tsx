@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Card, Row, Col, Form, Button } from 'react-bootstrap';
-import {MultiChatWindow, useMultiChatLogic,MultiChatSocket} from 'react-chat-engine-advanced'
+import {MultiChatWindow, useMultiChatLogic, MultiChatSocket} from 'react-chat-engine-advanced'
 const projectId: string='9fcaab4a-4aa1-4689-a953-d67efbda387a'
 const username:string='Manas Singh'
 const secret: string='1234'
@@ -134,7 +134,6 @@ export function Messages() {
       >
         <MultiChatSocket{...chatProps}/>
         <MultiChatWindow{...chatProps}/>
-        
       </Card>
     </div>
   );

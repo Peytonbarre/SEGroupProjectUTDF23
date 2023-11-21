@@ -324,9 +324,30 @@ def replyPost():
 
     return jsonify({"message": "Reply added successfully"}), 201
 
+@app.route('/getDashboardData', methods=['GET'])
+@jwt_required()  # This will require the access token in the header
+def getDashboardData():
+    #get username
+    current_user, username = get_jwt_identity()
+    
+    friendNames = []
+    # Gets a list of all the friends relations
+    friends = mongo.db.People.find({"$or": [{"friend1": current_user}, {"friend2": current_user}]})
+    for friend in friends:
+        if friend.get("friend1") == username:
+            friendNames.append(friend.get("friend2"))
+        else:
+            friendNames.append(friend.get("friend2"))
+    
+    friendProfiles = []
+    for name in friendNames:
+        friendProfile = mongo.db.People.find_one({"username": name})
+        friendProfiles.append(friendProfile)
+
 #Parses the transscript photo for the classes, sections, and professor
 def parseTranscript():
     return jsonify({"message": "hello world"})
+
 
 #Running the main app, not needed but good practice
 if __name__ == "__main__":
