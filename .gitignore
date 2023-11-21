@@ -32,3 +32,4 @@ Lib/
 Scripts/
 pyvenv.cfg
 /bin/
+node_modules
