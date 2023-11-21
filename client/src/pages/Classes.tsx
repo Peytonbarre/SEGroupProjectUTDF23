@@ -132,7 +132,7 @@ export function Classes() {
                 width: "150px",
                 height: "150px",
                 borderRadius: "150px",
-                background: "gray",
+                background: "#87b8ea",
               }}
               className="my-2"
             />
@@ -145,7 +145,7 @@ export function Classes() {
               }}
               className="mb-2"
             >
-              CS 3377.205
+              CS 3447.502
             </div>
             <div
               style={{
@@ -167,7 +167,7 @@ export function Classes() {
               }}
               className="mb-1"
             >
-              9 People
+              8 People
             </div>
             <div
               style={{
@@ -178,7 +178,197 @@ export function Classes() {
               }}
               className="mb-1"
             >
-              2 Friends
+              3 Friends
+            </div>
+          </div>
+          <div
+            style={{
+              width: "15%",
+              height: "40%",
+              background: "rgba(255, 255, 255, 0.4)",
+              borderRadius: "50px",
+            }}
+            className="m-5 mt-4 me-0 d-flex flex-column align-items-center justify-content-center"
+          >
+            <div
+              style={{
+                width: "150px",
+                height: "150px",
+                borderRadius: "150px",
+                background: "#c70d0f",
+              }}
+              className="my-2"
+            />
+            <div
+              style={{
+                fontFamily: "Poppins, sans-serif",
+                fontWeight: "200",
+                fontSize: "25px",
+                color: "#263D54",
+              }}
+              className="mb-2"
+            >
+              CS 3354.501
+            </div>
+            <div
+              style={{
+                fontFamily: "Poppins, sans-serif",
+                color: "#263D54",
+                fontWeight: "500",
+                fontSize: "20px",
+              }}
+              className="mb-1"
+            >
+              Srimathi Srinivasan
+            </div>
+            <div
+              style={{
+                fontFamily: "Poppins, sans-serif",
+                color: "#263D54",
+                fontWeight: "500",
+                fontSize: "20px",
+              }}
+              className="mb-1"
+            >
+              36 People
+            </div>
+            <div
+              style={{
+                fontFamily: "Poppins, sans-serif",
+                color: "#263D54",
+                fontWeight: "500",
+                fontSize: "20px",
+              }}
+              className="mb-1"
+            >
+              1 Friends
+            </div>
+          </div>
+
+          <div
+            style={{
+              width: "15%",
+              height: "40%",
+              background: "rgba(255, 255, 255, 0.4)",
+              borderRadius: "50px",
+            }}
+            className="m-5 mt-4 me-0 d-flex flex-column align-items-center justify-content-center"
+          >
+            <div
+              style={{
+                width: "150px",
+                height: "150px",
+                borderRadius: "150px",
+                background: "#01796f",
+              }}
+              className="my-2"
+            />
+            <div
+              style={{
+                fontFamily: "Poppins, sans-serif",
+                fontWeight: "200",
+                fontSize: "25px",
+                color: "#263D54",
+              }}
+              className="mb-2"
+            >
+              CS 4141.116
+            </div>
+            <div
+              style={{
+                fontFamily: "Poppins, sans-serif",
+                color: "#263D54",
+                fontWeight: "500",
+                fontSize: "20px",
+              }}
+              className="mb-1"
+            >
+              Eric Becker
+            </div>
+            <div
+              style={{
+                fontFamily: "Poppins, sans-serif",
+                color: "#263D54",
+                fontWeight: "500",
+                fontSize: "20px",
+              }}
+              className="mb-1"
+            >
+              12 People
+            </div>
+            <div
+              style={{
+                fontFamily: "Poppins, sans-serif",
+                color: "#263D54",
+                fontWeight: "500",
+                fontSize: "20px",
+              }}
+              className="mb-1"
+            >
+              0 Friends
+            </div>
+          </div>
+          <div
+            style={{
+              width: "15%",
+              height: "40%",
+              background: "rgba(255, 255, 255, 0.4)",
+              borderRadius: "50px",
+            }}
+            className="m-5 mt-4 me-0 d-flex flex-column align-items-center justify-content-center"
+          >
+            <div
+              style={{
+                width: "150px",
+                height: "150px",
+                borderRadius: "150px",
+                background: "#f47bfe",
+              }}
+              className="my-2"
+            />
+            <div
+              style={{
+                fontFamily: "Poppins, sans-serif",
+                fontWeight: "200",
+                fontSize: "25px",
+                color: "#263D54",
+              }}
+              className="mb-2"
+            >
+              CS 4341.002
+            </div>
+            <div
+              style={{
+                fontFamily: "Poppins, sans-serif",
+                color: "#263D54",
+                fontWeight: "500",
+                fontSize: "20px",
+              }}
+              className="mb-1"
+            >
+              Doug DeGroot
+            </div>
+            <div
+              style={{
+                fontFamily: "Poppins, sans-serif",
+                color: "#263D54",
+                fontWeight: "500",
+                fontSize: "20px",
+              }}
+              className="mb-1"
+            >
+              95 People
+            </div>
+            <div
+              style={{
+                fontFamily: "Poppins, sans-serif",
+                color: "#263D54",
+                fontWeight: "500",
+                fontSize: "20px",
+              }}
+              className="mb-1"
+            >
+              3 Friends
             </div>
           </div>
           <div
@@ -206,6 +396,7 @@ export function Classes() {
           </div>
         </Card.Body>
       </Card>
+      
     </div>
   );
 }
