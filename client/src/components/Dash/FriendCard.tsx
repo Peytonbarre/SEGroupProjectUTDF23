@@ -33,12 +33,16 @@ export function FriendCard() {
       </a>
       <Row className="mb-3">
         <Col md="auto">
-          <div
+          <img src={require("../../assets/mavir.JPG")}
             style={{
               height: "75px",
               width: "75px",
               borderRadius: "75px",
               background: "gray",
+              objectFit: "fill",
+              borderWidth: "2px",
+              borderStyle: "solid",
+              borderColor: "#263D54",
             }}
             className="ms-4"
           />
@@ -67,12 +71,16 @@ export function FriendCard() {
       </Row>
       <Row className="mb-3">
         <Col md="auto">
-          <div
+          <img src={require("../../assets/manas.jpg")}
             style={{
               height: "75px",
               width: "75px",
               borderRadius: "75px",
               background: "gray",
+              objectFit: "fill",
+              borderWidth: "2px",
+              borderStyle: "solid",
+              borderColor: "#263D54",
             }}
             className="ms-4"
           />
