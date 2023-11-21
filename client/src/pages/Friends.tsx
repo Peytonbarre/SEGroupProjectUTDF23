@@ -174,6 +174,7 @@ export function Friends() {
               }}
               className="my-2"
             />
+            
             <div
               style={{
                 fontFamily: 'Poppins, sans-serif',
@@ -198,6 +199,141 @@ export function Friends() {
             </div>
             <Button variant='secondary' className='mt-3'>Message</Button>
           </div>
+
+
+          <div
+            style={{
+              width: '15%',
+              height: '40%',
+              background: 'rgba(255, 255, 255, 0.4)',
+              borderRadius: '50px',
+            }}
+            className="m-5 mt-4 me-0 d-flex flex-column align-items-center justify-content-center"
+          >
+            <div
+              style={{
+                width: '150px',
+                height: '150px',
+                borderRadius: '150px',
+                background: 'gray',
+              }}
+              className="my-2"
+            />
+            
+            <div
+              style={{
+                fontFamily: 'Poppins, sans-serif',
+                fontWeight: '200',
+                fontSize: '25px',
+                color: '#263D54',
+              }}
+              className=""
+            >
+              Manvir Chakal
+            </div>
+            <div
+              style={{
+                fontFamily: 'Poppins, sans-serif',
+                color: '#263D54',
+                fontWeight: '500',
+                fontSize: '20px',
+              }}
+              className="mb-1"
+            >
+              Junior
+            </div>
+            <Button variant='secondary' className='mt-3'>Message</Button>
+          </div>
+
+
+          <div
+            style={{
+              width: '15%',
+              height: '40%',
+              background: 'rgba(255, 255, 255, 0.4)',
+              borderRadius: '50px',
+            }}
+            className="m-5 mt-4 me-0 d-flex flex-column align-items-center justify-content-center"
+          >
+            <div
+              style={{
+                width: '150px',
+                height: '150px',
+                borderRadius: '150px',
+                background: 'gray',
+              }}
+              className="my-2"
+            />
+            
+            <div
+              style={{
+                fontFamily: 'Poppins, sans-serif',
+                fontWeight: '200',
+                fontSize: '25px',
+                color: '#263D54',
+              }}
+              className=""
+            >
+              Manoj
+            </div>
+            <div
+              style={{
+                fontFamily: 'Poppins, sans-serif',
+                color: '#263D54',
+                fontWeight: '500',
+                fontSize: '20px',
+              }}
+              className="mb-1"
+            >
+              Junior
+            </div>
+            <Button variant='secondary' className='mt-3'>Message</Button>
+          </div>
+
+          <div
+            style={{
+              width: '15%',
+              height: '40%',
+              background: 'rgba(255, 255, 255, 0.4)',
+              borderRadius: '50px',
+            }}
+            className="m-5 mt-4 me-0 d-flex flex-column align-items-center justify-content-center"
+          >
+            <div
+              style={{
+                width: '150px',
+                height: '150px',
+                borderRadius: '150px',
+                background: 'gray',
+              }}
+              className="my-2"
+            />
+            
+            <div
+              style={{
+                fontFamily: 'Poppins, sans-serif',
+                fontWeight: '200',
+                fontSize: '25px',
+                color: '#263D54',
+              }}
+              className=""
+            >
+              Mageto 
+            </div>
+            <div
+              style={{
+                fontFamily: 'Poppins, sans-serif',
+                color: '#263D54',
+                fontWeight: '500',
+                fontSize: '20px',
+              }}
+              className="mb-1"
+            >
+              Junior
+            </div>
+            <Button variant='secondary' className='mt-3'>Message</Button>
+          </div>
+
           <div
             style={{
               width: '15%',
@@ -221,6 +357,14 @@ export function Friends() {
               <Button variant='secondary' className='mt-3'>Add Friend</Button>
             </div>
           </div>
+
+
+       
+
+          
+          
+
+          
         </Card.Body>
       </Card>
     </div>
