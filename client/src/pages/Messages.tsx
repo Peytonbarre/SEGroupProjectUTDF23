@@ -2,8 +2,8 @@
 import React from 'react';
 import { Card, Row, Col, Form, Button } from 'react-bootstrap';
 import {MultiChatWindow, useMultiChatLogic, MultiChatSocket} from 'react-chat-engine-advanced'
-const projectId: string='9fcaab4a-4aa1-4689-a953-d67efbda387a'
-const username:string='Manas Singh'
+const projectId: string='00dc8d94-cbb2-46d2-9e6a-218535e96ec3'
+const username:string='Peyton Barre'
 const secret: string='1234'
 
 
